@@ -1,20 +1,32 @@
 :root {
 	--mainColor: #34AC98;
 	--hlColor: #EC6635;
-	--mobileWidth: 320px;
-	--mobileSlideHeight: 280px;
+	--screenWidth: 320px;
+	--slideHeight: 280px;
 }
 
 body {
 	
 }
 
+a {
+	text-decoration: none;
+}
+
 .container {
-	width: var(--mobileWidth);
+	display: flex;
+	flex-flow: row wrap;
+	width: var(--screenWidth);
 	margin: 0 auto;
 }
 
 /* Navigation bar */
+
+.nav-bar {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
 
 nav {
 	font-size: 13px;
@@ -31,18 +43,20 @@ nav ul {
 }
 
 nav li {
-	display: inline-block;
-	margin: 0 5px;
+	display: inline-block;	
 }
 
 nav li a {
 	color: var(--mainColor);
-	text-decoration: none;
-	transition: color 0.3s;
+	transition: color 0.2s;
 }
 
 nav li a:hover {
 	color: var(--hlColor);
+}
+
+.nav-item {
+	padding: 0 5px;
 }
 
 .nav-icon {
@@ -56,16 +70,62 @@ nav li a:hover {
 	margin: 20px auto;
 }
 
+/* Social Side */
+
+.social-side {
+	padding-right: 20px;
+}
+
+.twitter-side p, .fb-side p {
+	font-size: 13px;
+	border-bottom: 1px dashed lightgray;
+}
+
+.twitter-con, .fb-con {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding: 5px;
+	text-align: center;
+	color: var(--mainColor);
+	transition: background 0.3s, color 0.3s;
+	margin-bottom: 20px;
+}
+
+.twitter-con:hover, .fb-con:hover {
+	color: var(--hlColor);
+	border-color: #D3EDE9;
+	background: #EFF8F7;
+}
+
+.twitter-con-icon {
+}
+
+.twitter-con div, .fb-con div { 
+	display: inline-block;
+	border: none;	
+	font-size: 11px;
+	font-style: italic;
+	
+}
+
+.fb-side-des {
+	border: none;
+	font-size: 11px;
+	font-style: italic;
+	line-height: 18px;
+	padding-bottom: 10px;
+}
+
 /* Slide Header */
 
 header {
-	padding-bottom: 20px;
-	border-bottom: 1px dashed lightgray;
+	padding-bottom: 20px;	
+	width: 100%;
 }
 
 .slide {
 	position: relative;
-	height: var(--mobileSlideHeight);
+	height: var(--slideHeight);
 	overflow: hidden;
 }
 
@@ -73,7 +133,6 @@ header {
 	position: absolute;
 	display: block;
 	height: 100%;
-	margin-left: calc(var(--mobileWidth)*(-0.5));
 }
 
 .slide-des {
@@ -90,6 +149,7 @@ header {
 .slide-des-title {
 	background: rgba(255, 255, 255, 0.8);
 	padding: 8px;
+	color: black;
 	font-size: 15px;
 	font-style: italic;
 }
@@ -102,27 +162,39 @@ header {
 	font-style: italic;
 }
 
+/* Social sidebar */
+
+.social-side {
+	display: none;
+}
+
 /* Subscribe */
 
 .subscribe {
-	width: 90%;
-	margin: auto;
-	padding-bottom: 20px;
+	display: flex;
+	flex-flow: row wrap;
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px 0px;
+	border-top: 1px dashed lightgray;
 	border-bottom: 1px dashed lightgray;
 }
 
 .subscribe-icon {
-	float: left;
+	flex: 1;
 	padding: 15px;
+	text-align: center;
 }
 
 .subscribe-des {
+	flex: 9;
 	font-size: 12px;
 	font-style: italic;
-	padding: 10px;
+	padding-top: 10px;
 }
 
 .subscribe-form {
+	flex: 1 100%;
 	text-align: center;
 }
 
@@ -160,7 +232,7 @@ article {
 	transition: opacity 0.5s;
 }
 
-.article-thumb-img:hover {
+.article-thumb:hover .article-thumb-img {
 	opacity: 0.8;
 }
 
@@ -185,7 +257,6 @@ article {
 
 .article-note a {
 	color: var(--mainColor);
-	text-decoration: none;
 }
 
 .article-note a:hover {
@@ -195,7 +266,7 @@ article {
 /* Footer */
 
 footer {
-	width: 90%;
+	width: 100%;
 	margin: auto;
 	padding-top: 20px;
 	padding-bottom: 40px;
@@ -211,7 +282,6 @@ footer {
 
 .copyright-links a {
 	color: var(--mainColor);
-	text-decoration: none;
 	transition: color 0.3s;
 }
 
@@ -236,4 +306,81 @@ footer {
 
 .clear-fix {
 	clear: both;
+}
+
+/* Responsive */
+
+@media screen and (min-width: 480px) {
+	:root {	--screenWidth: 480px;	}	
+	.nav-bar {	order: 1; flex-direction: row;	}
+	nav {	order: 2;	display: flex;	}	
+	nav ul {	align-self: center;	}	
+	.logo {	order: 1;	margin-left: 0;}	
+	.content {	order: 2;	}
+	.subscribe-icon {	padding: 8px 15px;	}
+	.subscribe-form { text-align: left; padding-left: 15px; }
+	.subscribe-form input[type='email'] {	width: 70%; margin-right: 10px;	}
+	.story {	order: 4;	display: flex; flex-flow: wrap; justify-content: center;	}
+	article {	display: inline-block; width: 216px;	height: 350px;}	
+	footer {	order: 3;	}
+}
+
+@media screen and (min-width: 768px) {
+	:root {	--screenWidth: 712px;	--slideHeight: 444px;}
+	
+	nav {	font-size: 17px;	}	
+	.nav-item {	padding: 0 15px;	position: relative;}
+	.nav-icon { display: block;	position: relative; top: -5px; transition: top 0.2s;}
+	.nav-item:hover .nav-icon { top: 0px;	}
+	.nav-text { position: relative; bottom: 0;}
+	
+	.slide-des { display: flex; flex-direction: column; align-items: flex-end; width: inherit; bottom: 70px; right: 0;  }
+	.slide-des-title {	display: table; font-size: 25px; padding: 12px 20px; position: relative;	}
+	.slide-des-text {	display: table; font-size: 18px; padding: 10px 20px;	}
+	
+	.subscribe-icon {	flex: 1;	}
+	.subscribe-des {	flex: 5; font-size: 15px; padding: 0;	}
+	.subscribe-form { flex: 4; padding: 10px; }
+	.subscribe-form input[type='email'] {	width: inherit; margin-right: 10px;	}
+	
+	article {	display: inline-block; width: 22%;}
+	.article-thumb-title {	font-size: 17px;	}
+	.article-des {	font-size: 15px;	}
+	.article-note {	font-size: 14px;	}
+	
+	.copyright {	font-size: 13px;	}
+}
+
+@media screen and (min-width: 992px) {
+	:root {
+		--screenWidth: 896px;
+	}
+	.container {	}
+	.nav-bar {	flex-direction: column; width: 19%;	}
+	.logo { margin: 10px 0; }
+	nav {	flex-direction: column; border: none;	}
+	nav ul {	margin-left: 0;	}
+	nav li {	display: block;	}
+	.nav-item {	padding: 0 0; margin-bottom: 10px;	display: flex; }
+	.nav-icon { left: 0; transition: left 0.2s; margin-right: 17px;	}
+	.nav-item:hover .nav-icon { left: 7px; top: -5px;	}
+	.nav-text { position: relative; right: 0;	}
+	
+	.social-side {	order: 3; display: block;	}
+	.content {	width: 79%; margin-left: auto;	}
+	header {	order: 2; overflow: hidden;	}
+	
+	.subscribe {	order: 3; margin-left: auto;	}
+	.subscribe-icon {	padding: 0;	}
+	.subscribe-icon img {	margin: 0;	}
+	.subscribe-des {	font-size: 13px;	}
+	.subscribe-form {	text-align: right; width: 60%; padding: 4px 0 0 0;	}
+	.subscribe-form input[type='email'] {	font-size: 12px;	}
+	.subscribe-form input[type='submit'] {	font-size: 12px; position: }
+}
+
+@media screen and (min-width: 1176px) {
+	:root {
+		--screenWidth: 1080px;
+	}
 }
